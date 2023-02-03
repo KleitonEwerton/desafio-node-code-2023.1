@@ -1,15 +1,23 @@
 import express = require("express");
-import router from "./routes";
+import routes from "./routes";
+import { AppDataSource } from "./data";
 
 import dotenv = require("dotenv");
 dotenv.config();
 
-const port = process.env.PORT || 3333;
-const app = express();
+const port = parseInt(process.env.PORT) || 3333;
+const host = process.env.HOST || "localhost";
 
-app.use(express.json());
-app.use(router);
+AppDataSource.initialize()
+  .then(async () => {
+   
+    const app = express();
+    
+    app.use(express.json());
+    app.use(routes);
 
-app.listen(port, () => {
-  console.log("O servidor foi inicializado em http://localhost:" + port);
-});
+    app.listen(port, () => {
+      console.log("O servidor foi inicializado em http://" + host + ":" + port);
+    });
+  })
+  .catch((error) => console.log("Check data-base config into .env\n\n"+error));
