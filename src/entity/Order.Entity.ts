@@ -1,7 +1,7 @@
 import { Restaurant } from './Restaurant.Entity';
-import { ManyToOne } from 'typeorm';
+import { JoinTable, ManyToOne } from 'typeorm';
 import { Product } from './Product.Entity';
-import { ManyToMany, OneToMany } from 'typeorm';
+import { ManyToMany} from 'typeorm';
 import { Column } from 'typeorm';
 import { Entity, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -29,7 +29,8 @@ export class Order {
     @ManyToOne(() => Restaurant, (restaurant) => restaurant.order)
     restaurant: Restaurant;
 
-    @Column('integer', { array: true })
+    @ManyToMany(() => Product, (product) => product.order)
+    @JoinTable()
     products: Product[];
 
 

@@ -3,8 +3,8 @@ import { Restaurant } from "./Restaurant.Entity";
 import {
   Column,
   Entity,
+  ManyToMany,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
 
@@ -27,5 +27,9 @@ export class Product {
 
   @ManyToOne(() => Restaurant, (restaurant) => restaurant.products)
   restaurant: Restaurant;
+
+  @ManyToMany(() => Order, (order) => order.products)
+  order: Order[];
+  
 
 }
