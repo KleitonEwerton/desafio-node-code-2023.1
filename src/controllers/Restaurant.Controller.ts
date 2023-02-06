@@ -23,6 +23,7 @@ export default class RestaurantController {
     } else {
       return res.status(404).json({
         message: "Restaurant not found",
+        id : id,
         success: false,
       });
     }
@@ -43,6 +44,7 @@ export default class RestaurantController {
     } else {
       return res.status(404).json({
         message: "Restaurant not found",
+        id: id,
         success: false,
       });
     }
@@ -61,6 +63,7 @@ export default class RestaurantController {
     } else {
       return res.status(404).json({
         message: "Restaurant not found",
+        id: id,
         success: false,
       });
     }
