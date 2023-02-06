@@ -23,7 +23,7 @@ export class Restaurant {
   city: string;
 
   @Column()
-  enderess: string;
+  address: string;
 
   @Column()
   phone: string;

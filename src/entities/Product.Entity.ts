@@ -12,12 +12,15 @@ import {
 export class Product {
   @PrimaryGeneratedColumn()
   id: number;
-
+  
+  @Column()
+  name: string;
+  
   @Column()
   description: string;
 
   @Column()
-  name: string;
+  quantity: number;
 
   @Column()
   price: number;
