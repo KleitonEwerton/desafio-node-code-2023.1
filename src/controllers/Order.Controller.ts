@@ -5,7 +5,11 @@ export default class OrderController {
   async create(req: Request, res: Response) {
     const { body } = req;
     const order = await orderRepository.save(body);
-    res.status(200).json(order);
+    return res.status(201).json({
+      message: "Order created",
+      payload: order,
+      success: true,
+    });
   }
 
   async view(req: Request, res: Response) {
@@ -13,9 +17,9 @@ export default class OrderController {
     const order = await orderRepository.findOneBy({ id: id });
 
     if (order) {
-      res.status(200).json(order);
+      return res.status(200).json(order);
     } else {
-      res.status(404).json({ message: "Order not found" });
+      return res.status(404).json({ message: "Order not found" });
     }
   }
 
@@ -26,27 +30,46 @@ export default class OrderController {
     const order = await orderRepository.findOneBy({ id: id });
     if (order) {
       await orderRepository.update(id, body);
-      res.status(200).json({ message: "Order updated" });
+      return res.status(200).json({
+        message: "Order updated",
+        payload: order,
+        success: true,
+      });
     } else {
-      res.status(404).json({ message: "Order not found" });
+      return res.status(404).json({
+        message: "Order not found",
+        id: id,
+        success: false,
+      });
     }
   }
 
-  async delete(req: Request, res: Response) {
-    
+  async remove(req: Request, res: Response) {
     const id = parseInt(req.params.id);
     const order = await orderRepository.findOneBy({ id: id });
 
     if (order) {
       await orderRepository.remove(order);
-      res.status(200).json({ message: "Order deleted" });
+      return res.status(200).json({
+        message: "Order deleted",
+        payload: order,
+        success: true,
+      });
     } else {
-      res.status(404).json({ message: "Order not found" });
+      return res.status(404).json({
+        message: "Order not found",
+        id: id,
+        success: false,
+      });
     }
   }
 
   async getAll(req: Request, res: Response) {
     const orders = await orderRepository.find();
-    res.status(200).json(orders);
+    return res.status(200).json({
+      message: "Orders found",
+      payload: orders,
+      success: true,
+    });
   }
 }
