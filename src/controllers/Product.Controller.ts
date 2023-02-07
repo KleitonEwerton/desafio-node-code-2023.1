@@ -2,6 +2,7 @@ import { productRepository } from "./../repositories/Product.Repository";
 export class ProductController {
   async create(req, res) {
     const { body } = req;
+    
     const product = await productRepository.save(body);
     return res.status(201).json({
       message: "Product created",
@@ -32,6 +33,7 @@ export class ProductController {
   async update(req, res) {
     const id = parseInt(req.params.id);
     const { body } = req;
+
 
     const product = await productRepository.findOneBy({ id: id });
     if (product) {

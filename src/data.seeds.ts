@@ -3,6 +3,7 @@ import { Product } from "./entities/Product.Entity";
 import { Response, Request } from "express";
 import { AppDataSource } from "./data";
 import { Order } from "./entities/Order.Entity";
+import * as bcrypt from 'bcrypt';
 
 const faker = require("faker");
 const dotenv = require("dotenv");
@@ -36,10 +37,11 @@ export async function seedDatabase(req: Request, res: Response) {
   }
 
   for (let i = 0; i < n_seeds; i++) {
+    const name = faker.company.companyName();
     restaurantRepository.save({
-      name: faker.company.companyName(),
+      name: name,
       email: faker.internet.email(),
-      password: faker.internet.password(),
+      password: await bcrypt.hash(name, 10),
       category: faker.commerce.department(),
       city: faker.address.city(),
       address: faker.address.streetAddress(),

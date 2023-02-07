@@ -1,7 +1,11 @@
 import { restaurantRepository } from "./../repositories/Restaurant.Repository";
+import * as bcrypt from 'bcrypt';
+
 export class RestaurantController {
   async create(req, res) {
     const { body } = req;
+    body.password = await bcrypt.hash(body.password, 10);
+
     const restaurant = await restaurantRepository.save(body);
     return res.status(201).json({
       message: "Restaurant created",
@@ -32,6 +36,7 @@ export class RestaurantController {
   async update(req, res) {
     const id = parseInt(req.params.id);
     const { body } = req;
+    body.password = await bcrypt.hash(body.password, 10);
 
     const restaurant = await restaurantRepository.findOneBy({ id: id });
     if (restaurant) {

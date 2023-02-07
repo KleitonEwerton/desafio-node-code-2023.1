@@ -1,3 +1,4 @@
+import { LoginController } from './controllers/Login.Controller';
 import { Router } from 'express'
 import { seedDatabase } from './data.seeds';
 import { ProductController } from './controllers/Product.Controller';
@@ -32,6 +33,7 @@ routes.delete("/restaurant/delete/:id", restaurantDeleteValidationMiddleware,new
 routes.get("/restaurants", new RestaurantController().getAll)
 
 // Login routes
+routes.post("/login", new LoginController().login)
 
 // Seed database routes
 routes.post("/seedDataBase", seedDatabase)
