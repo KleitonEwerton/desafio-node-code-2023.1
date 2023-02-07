@@ -5,6 +5,7 @@ import { Router } from 'express'
 import { seedDatabase } from './data.seeds';
 import { orderValidationMiddleware } from './middlewares/OrderValidation.Middleware';
 import { productValidationMidleware } from './middlewares/ProductValidation.Middleware';
+import { restaurantValidationMiddleware } from './middlewares/RestaurantValidation.Middleware';
 
 //Routes controller
 const routes = Router()
@@ -24,9 +25,9 @@ routes.delete("/order/delete/:id", new OrderController().delete)
 routes.get("/orders", new OrderController().getAll)
 
 // Restaurant routes
-routes.post("/restaurant/create", new RestaurantController().create)
+routes.post("/restaurant/create", restaurantValidationMiddleware,new RestaurantController().create)
 routes.get("/restaurant/view/:id", new RestaurantController().view)
-routes.put("/restaurant/update/:id", new RestaurantController().update)
+routes.put("/restaurant/update/:id", restaurantValidationMiddleware,new RestaurantController().update)
 routes.delete("/restaurant/delete/:id", new RestaurantController().delete)
 routes.get("/restaurants", new RestaurantController().getAll)
 
