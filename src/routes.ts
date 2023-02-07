@@ -3,6 +3,7 @@ import { OrderController } from './controllers/Order.Controller';
 import { ProductController } from './controllers/Product.Controller';
 import { Router } from 'express'
 import { seedDatabase } from './data.seeds';
+import { orderValidationMiddleware } from './middlewares/OrderValidation.Middleware';
 
 //Routes controller
 const routes = Router()
@@ -15,9 +16,9 @@ routes.delete("/product/delete/:id", new ProductController().delete)
 routes.get("/products", new ProductController().getAll)
 
 // Order routes
-routes.post("/order/create", new OrderController().create)
+routes.post("/order/create", orderValidationMiddleware,new OrderController().create)
 routes.get("/order/view/:id", new OrderController().view)
-routes.put("/order/update/:id", new OrderController().update)
+routes.put("/order/update/:id", orderValidationMiddleware,new OrderController().update)
 routes.delete("/order/delete/:id", new OrderController().delete)
 routes.get("/orders", new OrderController().getAll)
 
