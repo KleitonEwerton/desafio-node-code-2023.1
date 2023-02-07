@@ -1,5 +1,5 @@
 import { restaurantRepository } from "./../repositories/Restaurant.Repository";
-export default class RestaurantController {
+export class RestaurantController {
   async create(req, res) {
     const { body } = req;
     const restaurant = await restaurantRepository.save(body);
@@ -50,7 +50,7 @@ export default class RestaurantController {
     }
   }
 
-  async remove(req, res) {
+  async delete(req, res) {
     const id = parseInt(req.params.id);
     const restaurant = await restaurantRepository.findOneBy({ id: id });
 
@@ -58,6 +58,7 @@ export default class RestaurantController {
       await restaurantRepository.remove(restaurant);
       return res.status(200).json({
         message: "Restaurant deleted",
+        payload: restaurant,
         success: true,
       });
     } else {

@@ -50,7 +50,7 @@ export class ProductController {
     }
   }
 
-  async remove(req, res) {
+  async delete(req, res) {
     const id = parseInt(req.params.id);
 
     const product = await productRepository.findOneBy({ id: id });

@@ -11,7 +11,7 @@ export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column('float')
     total_value: number;
 
     @Column()

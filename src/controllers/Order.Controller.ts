@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { orderRepository } from "../repositories/Order.Repository";
 
-export default class OrderController {
+export class OrderController {
   async create(req: Request, res: Response) {
     const { body } = req;
     const order = await orderRepository.save(body);
@@ -52,7 +52,7 @@ export default class OrderController {
     }
   }
 
-  async remove(req: Request, res: Response) {
+  async delete(req: Request, res: Response) {
     const id = parseInt(req.params.id);
     const order = await orderRepository.findOneBy({ id: id });
 

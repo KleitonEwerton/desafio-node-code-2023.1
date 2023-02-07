@@ -22,7 +22,7 @@ export class Product {
   @Column()
   quantity: number;
 
-  @Column()
+  @Column('float')
   price: number;
 
   @Column()
