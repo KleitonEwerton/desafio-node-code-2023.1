@@ -2,6 +2,7 @@ import { RestaurantController } from './controllers/Restaurant.Controller';
 import { OrderController } from './controllers/Order.Controller';
 import { ProductController } from './controllers/Product.Controller';
 import { Router } from 'express'
+import { seedDatabase } from './data.seeds';
 
 //Routes controller
 const routes = Router()
@@ -28,6 +29,9 @@ routes.delete("/restaurant/delete/:id", new RestaurantController().delete)
 routes.get("/restaurants", new RestaurantController().getAll)
 
 // Login routes
+
+// Seed database routes
+routes.post("/seedDataBase", seedDatabase)
 
 // Documentation routes
 
