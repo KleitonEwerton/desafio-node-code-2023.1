@@ -7,12 +7,13 @@ import { RestaurantController } from './controllers/Restaurant.Controller';
 import { productCreateValidationMidleware, productDeleteValidationMidleware, productUpdateValidationMidleware, productViewValidationMidleware } from './middlewares/ProductValidation.Middleware';
 import { orderCreateValidationMiddleware, orderDeleteValidationMiddleware, orderUpdateValidationMiddleware, orderViewValidationMiddleware } from './middlewares/OrderValidation.Middleware';
 import { restaurantCreateValidationMiddleware, restaurantDeleteValidationMiddleware, restaurantUpdateValidationMiddleware, restaurantViewValidationMiddleware } from './middlewares/RestaurantValidation.Middleware';
+import { LoginMiddleware } from './middlewares/Login.Middleware';
 
 //Routes controller
 const routes = Router()
 
 // Product routes
-routes.post("/product/create", productCreateValidationMidleware,new ProductController().create)
+routes.post("/product/create", LoginMiddleware ,productCreateValidationMidleware,new ProductController().create)
 routes.get("/product/view/:id", productViewValidationMidleware,new ProductController().view)
 routes.put("/product/update/:id",productUpdateValidationMidleware, new ProductController().update)
 routes.delete("/product/delete/:id", productDeleteValidationMidleware,new ProductController().delete)

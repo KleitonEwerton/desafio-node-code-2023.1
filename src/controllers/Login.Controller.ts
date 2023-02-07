@@ -20,7 +20,7 @@ export class LoginController {
             message: "Email or password is incorrect",
             success: false,
     });
-    const token = jwt.sign({ email: email }, process.env.JWT_SECRET);
+    const token = jwt.sign({ email: email }, process.env.JWT_SECRET || "jwt");
 
     const isPasswordMatching = await bcrypt.compare(
       password,
