@@ -1,5 +1,5 @@
 import { productRepository } from "./../repositories/Product.Repository";
-export default class ProductController {
+export class ProductController {
   async create(req, res) {
     const { body } = req;
     const product = await productRepository.save(body);
