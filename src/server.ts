@@ -17,7 +17,7 @@ AppDataSource.initialize()
     app.use(routes);
 
     app.listen(port, () => {
-      console.log("O servidor foi inicializado em http://" + host + ":" + port);
+      console.log("Server started in http://" + host + ":" + port);
     });
   })
-  .catch((error) => console.log("Check data-base config into .env\n\n"+error));
+  .catch((error) => console.log("Check data-base config into .env or src/data.ts\n\n"+error));
