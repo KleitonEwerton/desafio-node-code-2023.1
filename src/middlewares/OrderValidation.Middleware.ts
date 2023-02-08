@@ -1,6 +1,11 @@
 import { NextFunction, Response } from "express";
 import { Request } from "express";
-import { orderCreateValidationSchema, orderDeleteValidationSchema, orderUpdateValidationSchema, orderViewValidationSchema } from "../validations/Order.Validation";
+import {
+  orderCreateValidationSchema,
+  orderDeleteValidationSchema,
+  orderUpdateValidationSchema,
+  orderViewValidationSchema,
+} from "../validations/Order.Validation";
 
 export async function orderCreateValidationMiddleware(
   req: Request,
@@ -56,7 +61,9 @@ export async function orderDeleteValidationMiddleware(
   next: NextFunction
 ) {
   try {
-    await orderDeleteValidationSchema.validate(req.params, { abortEarly: false });
+    await orderDeleteValidationSchema.validate(req.params, {
+      abortEarly: false,
+    });
     next();
   } catch (err) {
     res.status(400).send({
@@ -65,4 +72,3 @@ export async function orderDeleteValidationMiddleware(
     });
   }
 }
-

@@ -1,25 +1,17 @@
+import { NextFunction, Request, Response } from "express";
 import { loginValidationSchema } from "../validations/Login.Validation";
-
-const jwt = require("jsonwebtoken");
-const dotenv = require("dotenv");
-dotenv.config();
-
-export const LoginMiddleware = async (req, res, next) => {
-
-  try{
-    await loginValidationSchema.validate(req.headers, { abortEarly: false });
-  }catch(error){
-    return res.status(400).send({
-      message: "Invalid x-access-token in header",
-      errors: error.inner,
-    });
-  }
-
+export async function loginValidationMiddleware(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
   try {
-    const token = req.headers["x-access-token"];
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || "jwt");
+    await loginValidationSchema.validate(req.body, { abortEarly: false });
     next();
   } catch (error) {
-    return res.status(401).send("Invalid Token or Token Expired");
+    return res.status(400).send({
+      message: "Invalid email or password in body",
+      errors: error,
+    });
   }
-};
+}

@@ -1,9 +1,4 @@
-import {
-  restaurantCreateValidationSchema,
-  restaurantDeleteValidationSchema,
-  restaurantUpdateValidationSchema,
-  restaurantViewValidationSchema,
-} from "./../validations/Restaurante.Validation";
+import {restaurantCreateValidationSchema,restaurantDeleteValidationSchema,restaurantUpdateValidationSchema,restaurantViewValidationSchema,} from "./../validations/Restaurante.Validation";
 import { NextFunction, Request, Response } from "express";
 
 export async function restaurantCreateValidationMiddleware(

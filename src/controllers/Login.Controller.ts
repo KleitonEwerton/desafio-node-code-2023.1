@@ -7,36 +7,33 @@ import * as bcrypt from "bcrypt";
 const dotenv = require("dotenv");
 dotenv.config();
 export class LoginController {
-  async login(req: Request, res: Response) {
-    const email = req.body.email;
-    const password = req.body.password;
+	async login(req: Request, res: Response) {
+		const email = req.body.email;
+		const password = req.body.password;
 
-    const restaurant = await AppDataSource.getRepository(Restaurant).findOne({
-      where: { email: email }
-    });
+		const restaurant = await AppDataSource.getRepository(Restaurant).findOne({
+			where: { email: email },
+		});
 
-    if (!restaurant) 
-        return res.status(401).json({
-            message: "Email or password is incorrect",
-            success: false,
-    });
-    const token = jwt.sign({ email: email }, process.env.JWT_SECRET || "jwt");
+		if (!restaurant)
+			return res.status(401).json({
+				message: "Email or password is incorrect",
+				success: false,
+			});
+		const token = jwt.sign({ email: email }, process.env.JWT_SECRET || "jwt");
 
-    const isPasswordMatching = await bcrypt.compare(
-      password,
-      restaurant.password
-    );
-    if (!isPasswordMatching) {
-      return res.status(401).json({
-        message: "Email or password is incorrect",
-        success: false,
-      });
-    }
-
-    return res.status(200).json({
-      message: "Login successful",
-      token: token,
-      success: true,
-    });
-  }
+		const isPasswordMatching = await bcrypt.compare(password, restaurant.password);
+		if (!isPasswordMatching) {
+			return res.status(401).json({
+				message: "Email or password is incorrect",
+				success: false,
+			});
+		}
+    
+		return res.status(200).json({
+			message: "Login successful",
+			token: token,
+			success: true,
+		});
+	}
 }
