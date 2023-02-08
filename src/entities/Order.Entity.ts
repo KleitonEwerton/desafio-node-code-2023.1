@@ -27,7 +27,8 @@ export class Order {
     client_phone: string;
 
     @ManyToOne(() => Restaurant, (restaurant) => restaurant.order)
-    restaurant: Restaurant;
+    @Column({nullable: false})
+    restaurant: number;
 
     @ManyToMany(() => Product, (product) => product.order)
     @JoinTable()

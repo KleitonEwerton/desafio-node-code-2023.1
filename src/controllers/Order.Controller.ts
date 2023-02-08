@@ -4,6 +4,7 @@ import { orderRepository } from "../repositories/Order.Repository";
 export class OrderController {
   async create(req: Request, res: Response) {
     const { body } = req;
+    console.log(body)
     const order = await orderRepository.save(body);
     return res.status(201).json({
       message: "Order created",

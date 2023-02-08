@@ -29,7 +29,8 @@ export class Product {
   category: string;
 
   @ManyToOne(() => Restaurant, (restaurant) => restaurant.products)
-  restaurant: Restaurant;
+  @Column({nullable: false})
+  restaurant: number;
 
   @ManyToMany(() => Order, (order) => order.products)
   order: Order[];
