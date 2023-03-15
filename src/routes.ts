@@ -1,5 +1,7 @@
+const swaggerDocument = require('./swagger.json'); 
+const swaggerUi = require('swagger-ui-express');
 import { LoginController } from './controllers/Login.Controller';
-import { Router } from 'express'
+import { Router} from 'express'
 import { seedDatabase } from './data.seeds';
 import { ProductController } from './controllers/Product.Controller';
 import { OrderController } from './controllers/Order.Controller';
@@ -41,5 +43,6 @@ routes.post("/login", loginValidationMiddleware,new LoginController().login)
 routes.post("/seedDataBase", seedDatabase)
 
 // Documentation routes
-
+routes.use('/api-docs', swaggerUi.serve);
+routes.get('/api-docs', swaggerUi.setup(swaggerDocument));
 export default routes

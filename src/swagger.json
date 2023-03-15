@@ -1,0 +1,472 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0.0",
+		"title": "NODEJS 2023.1",
+		"description": "Projeto desenvolvido para o desafio de NodeJS da Code empressa junior de computação na gestão de 2023.1",
+		"license": {
+			"name": "MIT",
+			"url": "https://opensource.org/licenses/MIT"
+		}
+	},
+	"host": "localhost:3000",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "Order",
+			"description": "API for order in the system"
+		},
+		{
+			"name": "Product",
+			"description": "API for product in the system"
+		},
+		{
+			"name": "Restaurant",
+			"description": "API for restaurant in the system"
+		}
+	],
+	"paths": {
+		"/orders": {
+			"get": {
+				"tags": ["Order"],
+				"summary": "Get all orders in system. Use x-access-token in header",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Order"
+						}
+					}
+				}
+			}
+		},
+
+		"order/view/:id": {
+			"get": {
+				"tags": ["Order"],
+				"summary": "Get a order in system. Use x-access-token in header",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Order"
+						}
+					}
+				}
+			}
+		},
+
+		"/order/create": {
+			"post": {
+				"tags": ["Order"],
+				"summary": "Create new order in system. Use x-access-token in header",
+				"parameters": [
+					{
+						"name": "order",
+						"in": "body",
+						"description": "Order that we want to create",
+						"schema": {
+							"$ref": "#/definitions/Order"
+						}
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "New order is created",
+						"schema": {
+							"$ref": "#/definitions/Order"
+						}
+					}
+				}
+			}
+		},
+
+		"/order/update/:id": {
+			"put": {
+				"summary": "Update order with give ID. Use x-access-token in header",
+				"tags": ["Order"],
+				"parameters": [
+					{
+						"name": "order",
+						"in": "body",
+						"description": "Order with new values of properties",
+						"schema": {
+							"$ref": "#/definitions/Order"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Order is updated",
+						"schema": {
+							"$ref": "#/definitions/Order"
+						}
+					}
+				}
+			}
+		},
+		"/order/delete/:id": {
+			"delete": {
+				"summary": "Delete order with given ID. Use x-access-token in header",
+				"tags": ["Order"],
+				"responses": {
+					"200": {
+						"description": "order is deleted",
+						"schema": {
+							"$ref": "#/definitions/order"
+						}
+					}
+				}
+			}
+		},
+
+		"/products": {
+			"get": {
+				"tags": ["Product"],
+				"summary": "Get all products in system. Use x-access-token in header",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Product"
+						}
+					}
+				}
+			}
+		},
+
+		"product/view/:id": {
+			"get": {
+				"tags": ["Product"],
+				"summary": "Get a product in system. Use x-access-token in header",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Product"
+						}
+					}
+				}
+			}
+		},
+
+		"/product/create": {
+			"post": {
+				"tags": ["Product"],
+				"summary": "Create new product in system. Use x-access-token in header",
+				"parameters": [
+					{
+						"name": "product",
+						"in": "body",
+						"description": "product that we want to create",
+						"schema": {
+							"$ref": "#/definitions/Product"
+						}
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "New product is created",
+						"schema": {
+							"$ref": "#/definitions/Product"
+						}
+					}
+				}
+			}
+		},
+
+		"/product/update/:id": {
+			"put": {
+				"summary": "Update product with give ID. Use x-access-token in header",
+				"tags": ["Product"],
+				"parameters": [
+					{
+						"name": "product",
+						"in": "body",
+						"description": "product with new values of properties",
+						"schema": {
+							"$ref": "#/definitions/Product"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "product is updated",
+						"schema": {
+							"$ref": "#/definitions/Product"
+						}
+					}
+				}
+			}
+		},
+		"/product/delete/:id": {
+			"delete": {
+				"summary": "Delete product with given ID. Use x-access-token in header",
+				"tags": ["Product"],
+				"responses": {
+					"200": {
+						"description": "product is deleted",
+						"schema": {
+							"$ref": "#/definitions/Product"
+						}
+					}
+				}
+			}
+		},
+
+		"/restaurants": {
+			"get": {
+				"tags": ["Restaurant"],
+				"summary": "Get all restaurants in system. Use x-access-token in header",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Restaurant"
+						}
+					}
+				}
+			}
+		},
+
+		"restaurant/view/:id": {
+			"get": {
+				"tags": ["Restaurant"],
+				"summary": "Get a restaurant in system. Use x-access-token in header",
+				"responses": {
+					"200": {
+						"description": "OK",
+						"schema": {
+							"$ref": "#/definitions/Restaurant"
+						}
+					}
+				}
+			}
+		},
+
+		"/restaurant/create": {
+			"post": {
+				"tags": ["Restaurant"],
+				"summary": "Create new restaurant in system. Use x-access-token in header",
+				"parameters": [
+					{
+						"name": "restaurant",
+						"in": "body",
+						"description": "restaurant that we want to create",
+						"schema": {
+							"$ref": "#/definitions/Restaurant"
+						}
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "New restaurant is created",
+						"schema": {
+							"$ref": "#/definitions/Restaurant"
+						}
+					}
+				}
+			}
+		},
+
+		"/restaurant/update/:id": {
+			"put": {
+				"summary": "Update restaurant with give ID. Use x-access-token in header",
+				"tags": ["Restaurant"],
+				"parameters": [
+					{
+						"name": "restaurant",
+						"in": "body",
+						"description": "restaurant with new values of properties",
+						"schema": {
+							"$ref": "#/definitions/Restaurant"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "restaurant is updated",
+						"schema": {
+							"$ref": "#/definitions/Restaurant"
+						}
+					}
+				}
+			}
+		},
+		"/restaurant/delete/:id": {
+			"delete": {
+				"summary": "Delete restaurant with given ID. Use x-access-token in header",
+				"tags": ["Restaurant"],
+				"responses": {
+					"200": {
+						"description": "restaurant is deleted",
+						"schema": {
+							"$ref": "#/definitions/Restaurant"
+						}
+					}
+				}
+			}
+		},
+
+		"/login": {
+			"post": {
+				"tags": ["Login"],
+				"summary": "Login restaurant in system with email and password",
+				"parameters": [
+					{
+						"name": "restaurant",
+						"in": "body",
+						"description": "restaurant that login",
+						"schema": {
+							"required": ["email", "password"],
+							"properties": {
+								"email": {
+									"type": "string"
+								},
+								"password": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "Login restaurant is confirmed, x-access-token gerated",
+						"schema": {
+							"required": [],
+							"properties": {
+								"x-access-token": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/seedDataBase": {
+			"post": {
+				"tags": ["Seed"],
+				"summary": "Creates some instances in the database. *All passwords are the same as the name*",
+				"parameters": [
+					{
+						"name": "Seed",
+						"in": "body"
+					}
+				],
+				"produces": ["application/json"],
+				"responses": {
+					"200": {
+						"description": "New instances is created"
+					}
+				}
+			}
+		}
+	},
+	"definitions": {
+		"Order": {
+			"required": ["total_value", "client_name", "client_city", "client_address", "client_phone", "restaurant", "products"],
+			"properties": {
+				"_id": {
+					"type": "integer",
+					"uniqueItems": true
+				},
+				"total_value": {
+					"type": "integer"
+				},
+				"client_name": {
+					"type": "string"
+				},
+				"client_city": {
+					"type": "string"
+				},
+				"client_address": {
+					"type": "string"
+				},
+				"client_phone": {
+					"type": "string"
+				},
+				"restaurant": {
+					"type": "integer"
+				},
+				"products": {
+					"type": "array",
+					"items": {
+						"type": "integer"
+					}
+				}
+			}
+		},
+		"Product": {
+			"required": ["name", "description", "quantity", "price", "category", "restaurant"],
+			"properties": {
+				"_id": {
+					"type": "integer",
+					"uniqueItems": true
+				},
+				"name": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"quantity": {
+					"type": "integer"
+				},
+				"price": {
+					"type": "number"
+				},
+				"category ": {
+					"type": "string"
+				},
+				"restaurant": {
+					"type": "integer"
+				}
+			}
+		},
+		"Restaurant": {
+			"required": ["name", "email", "password", "category", "city", "address", "phone", "products"],
+			"properties": {
+				"_id": {
+					"type": "integer",
+					"uniqueItems": true
+				},
+				"name": {
+					"type": "string"
+				},
+				"email": {
+					"type": "string"
+				},
+				"password": {
+					"type": "string"
+				},
+				"category": {
+					"type": "string"
+				},
+				"city": {
+					"type": "string"
+				},
+				"address": {
+					"type": "string"
+				},
+				"phone": {
+					"type": "string"
+				},
+				"products": {
+					"type": "array",
+					"items": {
+						"type": "integer"
+					}
+				}
+			}
+		}
+	},
+	"schemes": ["http"],
+	"consumes": ["application/json"],
+	"produces": ["application/json"]
+}
